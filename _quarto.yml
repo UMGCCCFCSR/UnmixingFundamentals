@@ -1,0 +1,101 @@
+project:
+  type: website
+  output-dir: docs
+website:
+  google-analytics: "G-LZ35J3XE4D"
+  announcement: 
+    icon: info-circle
+    dismissable: true
+    content: "Thanks for your editing contributions!"
+    type: info
+    position: below-navbar 
+  page-navigation: true 
+  title: "UMGCCC FCSR"
+  navbar:
+    logo: images/hex.svg
+    background: white
+    left:
+      - text: "Home"
+        href: https://umgcccfcsr.github.io/ 
+      - text: "Resources"
+        menu:
+        - text: "Flow Cytometry"
+          href: https://umgcccfcsr.github.io/Theory/
+        - text: "Experiments"
+          href: https://umgcccfcsr.github.io/CellProcessing/
+        - text: "Instrument Tutorials"
+          href: https://umgcccfcsr.github.io/Aurora/          
+        - text: "Data Analysis"
+          href: https://umgcccfcsr.github.io/FCSExpress/
+        - text: "UMGCCC Flow Core Shared Resource"
+          href: https://umgcccfcsr.github.io/FCSExpress/
+      - text: "Courses"
+        menu:
+        - text: "Cytometry in R"
+          href: https://umgccfcss.github.io/CytometryInR/
+        - text: "Baltimore Introductory Spectral Cytometry Course"
+          href: https://umgccfcss.github.io/BISCC_2025/  
+      - text: "Instrument QC Status"
+        href: https://umgccfcss.github.io/InstrumentQC/
+    right:
+    - icon: youtube
+      href: https://www.youtube.com/@CytometryInR
+      aria-label: YouTube
+    - icon: github
+      href: https://github.com/UMGCCCFCSR
+      aria-label: GitHub
+  sidebar:
+    style: floating
+    collapse-level: 1
+    contents:
+    - section: "Flow Cytometry"
+      contents:
+      - text: "Theory"
+        href: https://umgcccfcsr.github.io/Theory/
+      - text: "Panel Design"
+        href: https://umgcccfcsr.github.io/PanelDesign/
+    - section: "Experiments"
+      contents:
+      - text: "Cell Processing"
+        href: https://umgcccfcsr.github.io/CellProcessing/
+      - text: "Antibody Staining"
+        href: https://umgcccfcsr.github.io/Staining/
+    - section: "Instrument Tutorials"
+      contents:
+      - text: "Cytek Aurora"
+        href: https://umgcccfcsr.github.io/Aurora/
+      - text: "BD FACSCantoII"
+        href: https://umgcccfcsr.github.io/CantoII/
+      - text: "BD LSRII"
+        href: https://umgcccfcsr.github.io/LSRII/
+      - text: "Amnis FlowSight"
+        href: https://umgcccfcsr.github.io/FlowSight/
+      - text: "Miltenyi MACSQuant10"
+        href: https://umgcccfcsr.github.io/MACSQuant10/
+      - text: "BD FACSAriaII"
+        href: https://umgcccfcsr.github.io/AriaII/
+      - text: "Cytek Aurora CS"
+        href: https://umgcccfcsr.github.io/AuroraCS/
+    - section: "Data Analysis"
+      contents:
+      - text: "FCSExpress"
+        href: https://umgcccfcsr.github.io/FCSExpress/
+      - text: "FlowJo v11"
+        href: https://umgcccfcsr.github.io/FlowJo/
+      - text: "R"
+        href: https://umgcccfcsr.github.io/CytometryInR/course/
+    - section: "UMGCCC Flow Core Shared Resource"
+      contents:
+      - text: "Core Tasks"
+        href: https://umgcccfcsr.github.io/CoreTasks/
+      - text: "Keeping a GitHub/Quarto LabNotebook"
+        href: https://umgcccfcsr.github.io/LabNotebook/
+  page-footer: 
+   left: Made with [Quarto](https://quarto.org/)
+   right: |
+    ![AGPL-3.0](/images/AGPL3.png)
+    ![CC-BY-SA](/images/CCBYSA.png)
+format:
+  html:
+    css: styles.css
+
