@@ -18,17 +18,13 @@ execute:
   message: true
 ---
 
+:::{columnn}
 ![](/images/ISAC%20SRL%20Full%20text%20Large.png)
-
-::: {style="text-align: right;"}
-[![AGPL-3.0](https://img.shields.io/badge/license-AGPLv3-blue)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 :::
 
-For the YouTube livestream recording, see [here]()
-
-For screen-shot slides, click [here]()
-
-<br>
+:::{column}
+[![AGPL-3.0](https://img.shields.io/badge/license-AGPLv3-blue)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
+:::
 
 ---
 
@@ -45,37 +41,25 @@ library(Luciernaga)
 
 ---
 
-### Unmixing: It's Not Magic!
 
 ![](images/RabbitPlaceholder.jpg)
 
----
 
-### For successful unmixing, a spectral flow cytometry needs three things
-
-::: {.columns style="display: grid; grid-template-columns: 1fr 2fr; align-items: center; column-gap: 2rem;"}
-
-::: {.column}
-![](images/RabbitPlaceholder.jpg)
-:::
-
-::: {.column}
+::: {.notes}
 - Single-color unmixing controls
 - Unstained unmixing controls
 - Full-stained samples
-:::
 
-:::
-
-::: {.notes}
+For successful unmixing, a spectral flow cytometry needs three things
 This section covers XYZ
 :::
 
 ---
 
-### Unmixing Screen
 
 ![](images/RabbitPlaceholder.jpg)
+
+
 
 :::{.notes}
 An example of the Cytek Aurora Unmixing Screen
@@ -83,14 +67,23 @@ An example of the Cytek Aurora Unmixing Screen
 
 ---
 
+
+
+
+::: {.notes}
 - What if I gated like this?
 
 - What if I grabbed the entire peak?
 
 - What does this even do again? What if I set it on the adjacent detector?
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Rationale
 
 - Raw Data
@@ -98,15 +91,26 @@ Rationale
 - Something something least squares
 
 - Unmixed Data
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Out comes good or bad data
+:::
 
 ---
+
+
 
 ![](images/06_Goals.png)
 
+
+
+::: {.notes}
 Goals
 
 - Provide conceptual understanding
@@ -114,54 +118,85 @@ Goals
 - Demystify some of the underlying math
 
 - Help build your own mental model to better troubleshoot issues you may encounter in your own unmixing adventures
+:::
 
 ---
+
+
 
 ![](images/08_BackToBeginning.png)
 
+
+
+::: {.notes}
 Let’s go back to the beginning
+:::
 
 ---
+
+
 
 ![](images/09_Cell.png)
 
+
+
+::: {.notes}
 In our tube, we have a cell
+:::
 
 ---
+
+
 
 ![](images/10_AutofluorescentMolecules.png)
 
+
+
+::: {.notes}
 With some autofluorescent molecules
+:::
 
 ---
+
+
 
 ![](images/11_Excitation.png)
 
+
+
+::: {.notes}
 Our Aurora shines a laser at it
+:::
 
 ---
+
+
 
 ![](images/12_SignalBack.png)
 
+
+
+::: {.notes}
 The cells molecules emit signal back
-
-
+:::
 
 ---
+
+
 
 ![](images/13_SignalCaptures.png)
 
+
+
+::: {.notes}
 Signal is captured across the various detectors
+:::
 
 ---
-
----
-
-
 
 ![](images/14_RawSignal.png)
 
-Raw Signal
+---
 
 ```{r}
 #| echo: FALSE
@@ -186,19 +221,27 @@ Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore,
 plotly::ggplotly(Plot)
 ```
 
+::: {.notes}
+Raw Signal
+:::
+
 ---
+
+
 
 ![](images/16_WhatIfWe.png)
 
+
+
+::: {.notes}
 What if there were twice as many autofluorescent molecules?
+:::
 
 ---
 
 ![](images/17_IncreasedBrightness.png)
 
 ---
-
-An increase in signal brightness
 
 ```{r}
 #| echo: FALSE
@@ -223,19 +266,27 @@ Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore,
 Plot
 ```
 
+::: {.notes}
+An increase in signal brightness
+:::
+
 ---
+
+
 
 ![](images/19_DoubleUp.png)
 
+
+
+::: {.notes}
 What if we increased the autofluorescent molecules again?!?
+:::
 
 ---
 
 ![](images/20_Brighter.png)
 
 ---
-
-An even brighter signal!
 
 ```{r}
 #| echo: FALSE
@@ -260,64 +311,124 @@ Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore,
 Plot
 ```
 
+::: {.notes}
+An even brighter signal!
+:::
 
 ---
+
 
 ![](images/22_Brightness.png)
 
+
+::: {.notes}
 First essential idea: Brightness
+:::
 
 ---
+
 
 ![](images/23_MoreCellsAcquired.png)
 
+
+::: {.notes}
 As we record more cells
+:::
 
 ---
+
 
 ![](images/24_AccountingDensity.png)
 
+
+::: {.notes}
 Accounting for density
+:::
 
 ---
+
 
 ![](images/25_LogAxis.png)
 
+
+::: {.notes}
 And transforming to a logarithmic axis 
+:::
 
 ---
+
 
 ![](images/26_DeltaBrightness.png)
 
+
+::: {.notes}
 Different brightness, but are they the same color?
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Normalizing/Scaling by Peak Detector
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 Divide each detectors measurement by the 
 peak detectors measurement
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Return the same constants
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Second essential idea: Signature
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Similar with Fluorophores (APC)
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 Each Fluorophore has its own characteristic signature
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 When we gate for Unstained Reference Control
 
 - The gate we draw
@@ -327,10 +438,14 @@ When we gate for Unstained Reference Control
 - The median measurement per detector is taken
 
 - And used to generate the reference autofluorescent signature
-
+:::
 
 ---
 
+
+
+
+::: {.notes}
 When we gate for Single-color Controls
 
 - These gated cells
@@ -342,60 +457,128 @@ When we gate for Single-color Controls
 - The cells within the positive gate
 
 - Make up the displayed signature
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 And if that wasn’t enough…
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 The signal coming from the positive gate in 
 our single-color controls is a mixture
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Essential concepts:
 
 - Brightness
 
 - Signature
+:::
 
 ---
 
+
+
+
+::: {.notes}
 How do we isolate the Fluorophore signature?
+:::
 
 ---
 
+
+
+
+::: {.notes}
 What happens with increased autofluorescence?
+:::
 
 ---
 
+
+
+
+::: {.notes}
 What happens if we increase fluorophore staining?!?
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 Very low
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 Low
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 Medium
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 High
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 When autofluorescence is correctly subtracted
 
 The Fluorophores signature is the same regardless of brightness
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 The issue: Variation in autofluorescence
 
 Difference in cell size:
@@ -406,31 +589,51 @@ Same cell size, just one has more autofluorescent molecules, thus brighter
 
 Variation in autofluorescent molecules:
 Same cell size, but express different mixture of autofluorescent molecules, resulting in a different autofluorescent signature
+:::
 
 ---
 
+
+
+
+::: {.notes}
 On dim-staining cells:
 
 Dim-staining cell: with correct autofluorescence subtraction
 
 Dim-staining cell: with missed autofluorescence subtraction
+:::
 
 ---
 
+
+
+
+::: {.notes}
 On bright-staining cells:
 
 Bright-staining cell: with correct autofluorescence subtraction
 
 Bright-staining cell: with missed autofluorescence subtraction
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Why would there be leftover autofluorescence signal?
 
 The median measurement from your unstained cells is used.
+:::
 
 ---
 
+
+
+
+::: {.notes}
 At the population level, not everything is “average”
 
 - Our “average”
@@ -438,9 +641,15 @@ autofluorescent cell
 for the entire population
 
 - Within our single-color reference controls, individual cells may have differences in their expression of autofluorescence molecules. 
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 Leftovers after autofluorescence subtraction
 
 - Adventures in Real World Data 
@@ -448,32 +657,60 @@ Leftovers after autofluorescence subtraction
 
 - Substantial leftover autofluorescence affecting signature for 
 dim marker*fluorophore combinations
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 Be cautious when using cell controls for dim fluorophores or tertiary markers
 
 - Split the gated cells into 10 groups by percentile, subtracted autofluorescence, and then normalized
 
 - ncreasing leftover autofluorescence as 
 you gate further left
+:::
 
 ---
 
+
+
+
+::: {.notes}
 In terms of the fluorophore signature used for unmixing
 
 - When gating single-color controls, the brightest staining cells are more resilient to signature changes due to leftoversWhen gating single-color controls, the brightest staining cells are more resilient to signature changes due to leftovers 
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 One major exception: Antibody aggregates!
+:::
 
 ---
 
+
+
+
+
+::: {.notes}
 Not all problems are due to autofluorescence
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Your fluorophores can also vary in 
 their signature!!! 
 
@@ -483,9 +720,14 @@ their signature!!!
 - FRET
 
 But that’s a problem for Thursday’s Single Color and Autofluorescence Troubleshooting session. 
+:::
 
 ---
 
+
+
+
+::: {.notes}
 For now: The three rules for good unmixing controls
 
 - The single stained control must be as bright or brighter than the fully stained sample.
@@ -494,69 +736,143 @@ For now: The three rules for good unmixing controls
 
 
 -  Background autofluorescence should be the same for the positive and negative control
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Every reference control provides an unique signature
 
 Then what happens?
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Each unique signature becomes a reference vector
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Wait a second…. Vector…
+:::
 
 ---
 
+
+
+::: {.notes}
 It’s not magic….
+:::
 
 ---
 
+
+
+
+::: {.notes}
 It’s math!
 
 Which for biologist might as well be magic
+:::
 
 ---
 
+
+
+
+::: {.notes}
 So lets try to demystify some of underlying math
+:::
 
 ---
 
+
+
+
+::: {.notes}
 A two-detector vector
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Finding a linear combination of Blue and Green that gives us the total
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Viewed differently:
+:::
 
 ---
 
+
+
+
+::: {.notes}
 A three-detector vector
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Where David’s Art Skills End
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Lines (or planes) flying through space
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Also explains: Presence or Absence
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Beyond three-dimensions
+:::
 
 ---
 
+
+
+
+::: {.notes}
 Final Math Details:
 
 - In the above examples, we had the same number of detectors as fluorophores. The matrix generated by collecting the signatures from your single-color controls is a square. This is the case with conventional Flow Cytometry.
@@ -564,18 +880,33 @@ Final Math Details:
 - In Spectral Flow Cytometry, we have more detectors than Fluorophores. The matrix generated by collecting the signatures from your single-color controls is a rectangle. This is called an overdetermined system. With rare exceptions, these can’t be solved exactly. 
 
 - However, they can be approximated, which is where some variation of least-square algorithm is used (ordinary least squares in SpectroFlos case)
+:::
 
 ---
 
+
+
+
+::: {.notes}
 If you want to learn more:
+:::
 
 ---
 
+
+
+
+::: {.notes}
 A spectral cytometer needs three things 
 for successful unmixing:
+:::
 
 ---
 
+
+
+
+:::{.notes}
 Unmixing’s Quandaries
 
 -  Each cell in your full-stained sample is unmixed individually… 
@@ -591,86 +922,91 @@ Which are derived from taking the mean/median fluorescence measurement of a gate
 
 Variation here will
 impact your unmixing results
+:::
 
 ---
 
+# Code Examples
 
-# Density
+---
 
 ```{r}
+#| code-fold: TRUE
+
 TheFluorophore <- "PerCP-Cy5.5"
 
 DetectorColumns <- Luciernaga:::InstrumentReferences(64) |>
    dplyr::filter(Fluorophore %in% TheFluorophore) |> pull(Detector)
-
-DetectorColumns
 
 DataWide <- Luciernaga:::InstrumentReferences(64) |> select(-Instrument) |> mutate(AdjustedY = AdjustedY * 10000) |> dplyr::filter(Fluorophore %in% TheFluorophore) |> tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
 
 Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore, columnname="Fluorophore",
  data=DataWide, Normalize=FALSE, legend=FALSE, ylim=15000, Expand=10000, variance = "high", returnType="Density", logScale=FALSE)
-
-Plot
 ```
 
-# Amalgamated
+```{r}
+#| eval: FALSE
+plotly::ggplotly(Plot)
+```
+
+---
 
 ```{r}
+#| code-fold: TRUE
 TheFluorophore <- "PerCP-Cy5.5"
 
 DetectorColumns <- Luciernaga:::InstrumentReferences(64) |>
    dplyr::filter(Fluorophore %in% TheFluorophore) |> pull(Detector)
-
-DetectorColumns
 
 DataWide <- Luciernaga:::InstrumentReferences(64) |> select(-Instrument) |> mutate(AdjustedY = AdjustedY * 10000) |> dplyr::filter(Fluorophore %in% TheFluorophore) |> tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
 
 Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore, columnname="Fluorophore",
  data=DataWide, Normalize=FALSE, legend=FALSE, ylim=15000, Expand=100, returnType="Amalgamated")
+```
 
+```{r}
 plotly::ggplotly(Plot)
 ```
 
-
-
-
-
-# Original
+---
 
 ```{r}
+#| code-fold: TRUE
 TheFluorophore <- "PerCP-Cy5.5"
 
 DetectorColumns <- Luciernaga:::InstrumentReferences(64) |>
    dplyr::filter(Fluorophore %in% TheFluorophore) |> pull(Detector)
-
-DetectorColumns
 
 DataWide <- Luciernaga:::InstrumentReferences(64) |> select(-Instrument) |> mutate(AdjustedY = AdjustedY * 10000) |> dplyr::filter(Fluorophore %in% TheFluorophore) |> tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
 
 Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore, columnname="Fluorophore",
  data=DataWide, Normalize=FALSE, legend=FALSE, ylim=15000)
-
-plotly::ggplotly(Plot)
 ```
 
 ```{r}
+#| code-fold: TRUE
+plotly::ggplotly(Plot)
+```
+
+---
+
+```{r}
+#| code-fold: TRUE
 TheFluorophore <- "PerCP-Cy5.5"
 
 DetectorColumns <- Luciernaga:::InstrumentReferences(64) |>
    dplyr::filter(Fluorophore %in% TheFluorophore) |> pull(Detector)
 
-DetectorColumns
-
 DataWide <- Luciernaga:::InstrumentReferences(64) |> select(-Instrument) |> mutate(AdjustedY = AdjustedY * 10000) |> dplyr::filter(Fluorophore %in% TheFluorophore) |> tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
 
 Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore, columnname="Fluorophore",
  data=DataWide, Normalize=TRUE, legend=FALSE)
-
-plotly::ggplotly(Plot)
 ```
 
-Thank You
----
+```{r}
+#| code-fold: TRUE
+plotly::ggplotly(Plot)
+```
 
 
 
