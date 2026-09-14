@@ -2,9 +2,9 @@
 title: "Unmixing Fundamentals"
 author:
   - name: David Rach
-    orcid: 
-date: 07-18-2026
-format: html
+    orcid: 0000-0003-2235-5585
+date: 09-01-2026
+format: revealjs
 toc: true
 toc-depth: 5
 ---
@@ -23,20 +23,54 @@ For screen-shot slides, click [here]()
 
 ---
 
-# Unmixing Its Not Magic
+```{r}
+#| warning: FALSE
+#| message: FALSE
+#| echo: FALSE
+#| include: FALSE
+
+library(dplyr)
+library(ggplot2)
+library(Luciernaga)
+```
 
 ---
 
-A spectral cytometer needs three things 
-for successful unmixing:
+### Unmixing: It's Not Magic!
 
-- Full-stained samples
+![](images/RabbitPlaceholder.jpg)
+
+---
+
+### For successful unmixing, a spectral flow cytometry needs three things
+
+::: {.columns style="display: grid; grid-template-columns: 1fr 2fr; align-items: center; column-gap: 2rem;"}
+
+::: {.column}
+![](images/RabbitPlaceholder.jpg)
+:::
+
+::: {.column}
 - Single-color unmixing controls
 - Unstained unmixing controls
+- Full-stained samples
+:::
+
+:::
+
+::: {.notes}
+This section covers XYZ
+:::
 
 ---
 
-The unmixing screen
+### Unmixing Screen
+
+![](images/RabbitPlaceholder.jpg)
+
+:::{.notes}
+An example of the Cytek Aurora Unmixing Screen
+:::
 
 ---
 
@@ -62,6 +96,8 @@ Out comes good or bad data
 
 ---
 
+![](images/06_Goals.png)
+
 Goals
 
 - Provide conceptual understanding
@@ -72,65 +108,201 @@ Goals
 
 ---
 
+![](images/08_BackToBeginning.png)
+
 Let’s go back to the beginning
 
+```{r}
+#| echo: FALSE
+TheFluorophore <- "FITC"
+
+DetectorColumns <- Luciernaga:::InstrumentReferences(64) |>
+   dplyr::filter(Fluorophore %in% TheFluorophore) |> pull(Detector)
+
+DataWide <- data.frame(Fluorophore = TheFluorophore,
+ Detector=DetectorColumns, AdjustedY=0) |>
+ tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
+
+#DataWide <- Luciernaga:::InstrumentReferences(64) |>
+#    select(-Instrument) |> mutate(AdjustedY = AdjustedY * 10000) |> 
+#    dplyr::filter(Fluorophore %in% TheFluorophore) |>
+#     tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
+
+Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore,
+ columnname="Fluorophore", data=DataWide, Normalize=FALSE,
+ legend=FALSE, ylim=1000, Expand=FALSE, returnType="Cartoon")
+```
+
+```{r}
+#| echo: FALSE
+plotly::ggplotly(Plot)
+```
+
 ---
+
+![](images/09_Cell.png)
 
 In our tube, we have a cell
 
 ---
 
+![](images/10_AutofluorescentMolecules.png)
+
 With some autofluorescent molecules
 
 ---
+
+![](images/11_Excitation.png)
 
 Our Aurora shines a laser at it
 
 ---
 
+![](images/12_SignalBack.png)
+
 The cells molecules emit signal back
 
 ---
+
+![](images/13_SignalCaptures.png)
 
 Signal is captured across the various detectors
 
 ---
 
+
+
+# Density
+
+```{r}
+TheFluorophore <- "PerCP-Cy5.5"
+
+DetectorColumns <- Luciernaga:::InstrumentReferences(64) |>
+   dplyr::filter(Fluorophore %in% TheFluorophore) |> pull(Detector)
+
+DetectorColumns
+
+DataWide <- Luciernaga:::InstrumentReferences(64) |> select(-Instrument) |> mutate(AdjustedY = AdjustedY * 10000) |> dplyr::filter(Fluorophore %in% TheFluorophore) |> tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
+
+Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore, columnname="Fluorophore",
+ data=DataWide, Normalize=FALSE, legend=FALSE, ylim=15000, Expand=10000, variance = "high", returnType="Ribbon", logScale=FALSE)
+
+Plot
+```
+
+# Amalgamated
+
+```{r}
+TheFluorophore <- "PerCP-Cy5.5"
+
+DetectorColumns <- Luciernaga:::InstrumentReferences(64) |>
+   dplyr::filter(Fluorophore %in% TheFluorophore) |> pull(Detector)
+
+DetectorColumns
+
+DataWide <- Luciernaga:::InstrumentReferences(64) |> select(-Instrument) |> mutate(AdjustedY = AdjustedY * 10000) |> dplyr::filter(Fluorophore %in% TheFluorophore) |> tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
+
+Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore, columnname="Fluorophore",
+ data=DataWide, Normalize=FALSE, legend=FALSE, ylim=15000, Expand=100, returnType="Amalgamated")
+
+plotly::ggplotly(Plot)
+```
+
+
+
+
+
+# Original
+
+```{r}
+TheFluorophore <- "PerCP-Cy5.5"
+
+DetectorColumns <- Luciernaga:::InstrumentReferences(64) |>
+   dplyr::filter(Fluorophore %in% TheFluorophore) |> pull(Detector)
+
+DetectorColumns
+
+DataWide <- Luciernaga:::InstrumentReferences(64) |> select(-Instrument) |> mutate(AdjustedY = AdjustedY * 10000) |> dplyr::filter(Fluorophore %in% TheFluorophore) |> tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
+
+Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore, columnname="Fluorophore",
+ data=DataWide, Normalize=FALSE, legend=FALSE, ylim=15000)
+
+plotly::ggplotly(Plot)
+```
+
+```{r}
+TheFluorophore <- "PerCP-Cy5.5"
+
+DetectorColumns <- Luciernaga:::InstrumentReferences(64) |>
+   dplyr::filter(Fluorophore %in% TheFluorophore) |> pull(Detector)
+
+DetectorColumns
+
+DataWide <- Luciernaga:::InstrumentReferences(64) |> select(-Instrument) |> mutate(AdjustedY = AdjustedY * 10000) |> dplyr::filter(Fluorophore %in% TheFluorophore) |> tidyr::pivot_wider(names_from="Detector", values_from="AdjustedY")
+
+Plot <- Luciernaga::CartoonSignatures(x=TheFluorophore, columnname="Fluorophore",
+ data=DataWide, Normalize=TRUE, legend=FALSE)
+
+plotly::ggplotly(Plot)
+```
+
+---
+
+![](images/14_RawSignal.png)
+
 Raw Signal
 
 ---
+
+![](images/16_WhatIfWe.png)
 
 What if there were twice as many autofluorescent molecules?
 
 ---
 
+![](images/17_IncreasedBrightness.png)
+
 An increase in signal brightness
 
 ---
+
+![](images/19_DoubleUp.png)
 
 What if we increased the autofluorescent molecules again?!?
 
 ---
 
+![](images/20_Brighter.png)
+
 An even brighter signal!
 
 ---
+
+![](images/22_Brightness.png)
 
 First essential idea: Brightness
 
 ---
 
+![](images/23_MoreCellsAcquired.png)
+
 As we record more cells
 
 ---
+
+![](images/24_AccountingDensity.png)
 
 Accounting for density
 
 ---
 
+![](images/25_LogAxis.png)
+
 And transforming to a logarithmic axis 
 
 ---
+
+![](images/26_DeltaBrightness.png)
 
 Different brightness, but are they the same color?
 

@@ -267,3 +267,103 @@ label {
 
 
 // quarto-scss-analysis-annotation { "origin": null }
+
+/*-- scss:defaults --*/
+
+// Times New Roman for the whole deck
+$font-family-serif: "Times New Roman", Times, serif !default;
+$presentation-font: $font-family-serif !default; // reveal.js body font variable
+
+// Headings — PPT decks often keep a serif for body but a matching serif for titles too
+$presentation-heading-font: $font-family-serif !default;
+
+// Root scaling — like PowerPoint's "Design > Slide Size" baseline.
+// Everything below scales relative to this unless overridden individually.
+$presentation-font-size-root: 32px !default; // default 40px
+
+// ---- Title slide (the "Title Slide" layout in PPT) ----
+$presentation-h1-font-size: 2.2em !default;   // deck title
+$presentation-h2-font-size: 1.6em !default;   // subtitle-ish
+
+// ---- In-slide headings (PPT "Title and Content" layout) ----
+$presentation-h3-font-size: 1.3em !default;
+$presentation-h4-font-size: 1.1em !default;
+
+// ---- Body text sizes ----
+$presentation-font-size-root: 32px !default; // affects <p>, <li>, general body copy
+$presentation-line-height: 1.3 !default;
+
+/*-- scss:rules --*/
+
+// PowerPoint "Title" placeholder → reveal's slide h1/h2
+.reveal .slides section > h1 {
+  font-size: 1.8em;
+  white-space: normal; // let it wrap now that size is controlled
+}
+
+.reveal .slides section > h2 {
+  font-size: 1.4em;
+}
+
+// PowerPoint "Subtitle" placeholder
+.reveal .slides section > h3 {
+  font-size: 1.15em;
+  font-weight: 400; // PPT subtitles are often lighter weight than headings
+}
+
+// PowerPoint "Content"/body text placeholder → paragraphs, lists
+.reveal .slides section p,
+.reveal .slides section li {
+  font-size: 0.85em;
+  line-height: 1.35;
+}
+
+// Nested bullet levels (PPT indent levels 2, 3...)
+.reveal .slides section ul ul,
+.reveal .slides section ol ol {
+  font-size: 0.9em; // relative to parent, compounds like PPT's indent shrink
+}
+
+// PowerPoint "Footer" / small print / citation text
+.reveal .slides section .footer,
+.reveal .slides section small {
+  font-size: 0.5em;
+}
+
+// Code blocks (no direct PPT equivalent, but common in tech decks)
+.reveal .slides section pre,
+.reveal .slides section code {
+  font-size: 0.75em;
+}
+
+// Blockquotes (PPT "Quote" layout)
+.reveal .slides section blockquote {
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+// Table text (PPT table placeholder)
+.reveal .slides section table {
+  font-size: 0.8em;
+}
+
+// Slide number / date footer (PPT "Slide Number" placeholder)
+.reveal .slide-number,
+.reveal .date {
+  font-size: 0.4em;
+}
+
+/*-- scss:rules --*/
+
+.reveal,
+.reveal .slides,
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal p,
+.reveal li,
+.reveal blockquote,
+.reveal table {
+  font-family: "Times New Roman", Times, serif !important;
+}
